@@ -28,14 +28,15 @@ export default {
 
 <style>
 .grid {
-  display: flex;                       /* establish flex container */
-  flex-wrap: wrap;                     /* enable flex items to wrap */
+  display: flex;                       
+  flex-wrap: wrap;                     
   justify-content: space-around;
-  
+  width: 40%;
+  margin-left: 30%;
 }
 .cell {
-  flex: 0 0 32%;                       /* don't grow, don't shrink, width */
-  height: 20%;
+  flex: 0 0 32%;                      
+  height: 50%;
   width: 20%;
   margin-bottom: 5px;
   background-color: #999;

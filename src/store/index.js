@@ -11,6 +11,8 @@ export default new Vuex.Store({
     additionO: 0,
     //Game Winner 1=PX, 2=PO, 3=Draw and 0=NoWinnerYet
     winner: 0,
+    PX: true,
+    PO: false,
     //Board State 0=Empty, 1=X and 2=O
     boardState: [
       {
@@ -83,6 +85,23 @@ export default new Vuex.Store({
         }
 
       });
+    },
+    changePlayer(state, id) {
+      console.log("player changed: " + id);
+      for (let index = 0; index < state.boardState.length; index++) {
+        const element = state.boardState[index];
+        if(element.name==id){
+          if (state.PX) {
+            state.boardState[index].state = "X";
+            state.PX = false;
+            state.PY = true;
+          }else if(state.PY){
+            state.boardState[index].state = "O";
+            state.PX = true;
+            state.PY = false;
+          }
+        }
+      }
     }
   },
   actions: {
