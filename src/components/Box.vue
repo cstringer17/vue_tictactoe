@@ -1,7 +1,6 @@
 <template>
   <div id="box" v-on:click="changeState">
-    <h1>{{id}}</h1>
-    <h2>current Value: {{getState()}}</h2>
+    <h1>{{ getState() }}</h1>
   </div>
 </template>
 
@@ -17,12 +16,22 @@ export default {
       ) {
         const element = this.$store.state.boardState[index];
         if (element.name == this.id) {
-          return element.state;
+          switch (element.state) {
+            case "X":
+              return "x";
+            case "O":
+              return "O";
+            case "0":
+              return " ";
+            default:
+              return " ";
+          }
         }
       }
     },
     changeState() {
       this.$store.commit("changePlayer", this.id);
+      this.$store.commit("checkWin");
     },
   },
 };
@@ -30,3 +39,6 @@ export default {
 
 <style>
 </style>
+
+      
+    
