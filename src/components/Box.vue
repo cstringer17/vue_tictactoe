@@ -1,5 +1,5 @@
 <template>
-  <div id="box" v-on:click="changeState">
+  <div v-bind:class="visible" id="box" v-on:click="changeState">
     <h1>{{ getState() }}</h1>
   </div>
 </template>
@@ -7,6 +7,11 @@
 <script>
 export default {
   props: ["id"],
+  data(){
+    return{
+      visible: "nosee"
+    }
+  },
   methods: {
     getState() {
       for (
@@ -18,13 +23,16 @@ export default {
         if (element.name == this.id) {
           switch (element.state) {
             case "X":
+              this.visible = "see";
               return "x";
             case "O":
+              this.visible = "see";
               return "O";
             case "0":
               return " ";
             default:
-              return " ";
+              this.visible = "nosee";
+              return "E";
           }
         }
       }
@@ -38,6 +46,13 @@ export default {
 </script>
 
 <style>
+.see{
+  color:white;
+}
+.nosee{
+  color: #999;
+}
+
 </style>
 
       
