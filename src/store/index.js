@@ -86,20 +86,36 @@ export default new Vuex.Store({
             state.winner = "PO"
             console.log("O Wins");
           }
+          state.additionO = 0;
+          state.additionX = 0;
           state.counter = 0;
         }
 
       });
+      state.additionO = 0;
+      state.additionX = 0;
+      state.counter = 0;
+      //vertical
+      for (let index = 0; index < 3; index++) {
+        for (let subIndex = 0; subIndex < 3; subIndex++) {
+
+        }
+        // state.boardState.forEach(element => {
+        //   console.log(state.boardState[index].name);
+        //   element;
+        // });
+      }
+
     },
     changePlayer(state, id) {
       for (let index = 0; index < state.boardState.length; index++) {
         const element = state.boardState[index];
-        if(element.name==id){
+        if (element.name == id) {
           if (state.PX && state.boardState[index].state == 0) {
             state.boardState[index].state = "X";
             state.PX = false;
             state.PY = true;
-          }else if(state.PY && state.boardState[index].state == 0){
+          } else if (state.PY && state.boardState[index].state == 0) {
             state.boardState[index].state = "O";
             state.PX = true;
             state.PY = false;
