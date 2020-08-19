@@ -107,11 +107,59 @@ export default new Vuex.Store({
             state.winner = "PO"
             console.log("O Wins");
           }
-          
+
         }
         state.additionO = 0;
         state.additionX = 0;
       }
+
+      //diagonal
+      for (let index = 1; index < 4; index++) {
+        state.boardState.forEach(element => {
+          if(element.name == (index*11)){
+          if (element.state == "X") {
+            state.additionX += element.magic;
+          } else if (element.state == "O") {
+            state.additionO += element.magic;
+          }
+          if (state.additionX == 15) {
+            state.winner = "PX"
+            console.log("X Wins");
+          } else if (state.additionO == 15) {
+            state.winner = "PO"
+            console.log("O Wins");
+          }
+        }
+        });
+      }
+      state.additionO = 0;
+      state.additionX = 0;
+
+      for (let index = 3; index >= 1; index--) {
+        state.boardState.forEach(element => {
+          if(element.name == (index*11)){
+          if (element.state == "X") {
+            state.additionX += element.magic;
+            console.log(state.additionX);
+          } else if (element.state == "O") {
+            state.additionO += element.magic;
+          }
+          if (state.additionX == 15) {
+            state.winner = "PX"
+            console.log("X Wins");
+          } else if (state.additionO == 15) {
+            state.winner = "PO"
+            console.log("O Wins");
+          }
+        }
+        });
+      }
+     
+      state.additionO = 0;
+      state.additionX = 0;
+
+
+
 
     },
     changePlayer(state, id) {
@@ -129,7 +177,14 @@ export default new Vuex.Store({
           }
         }
       }
-    }
+    },
+    reset(state){
+      for (let index = 0; index < state.boardState.length; index++) {
+        state.boardState[index].state = 0;
+
+      }
+      state.winner = 0;
+    },
   },
   actions: {
   },

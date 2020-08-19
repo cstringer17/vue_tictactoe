@@ -1,7 +1,7 @@
 <template>
 <div>
 <h1>TicTacToe</h1>
-  <div class="grid">
+  <div v-if="this.$store.state.winner==0" class="grid">
     <box class="cell" id="11"></box>
     <box class="cell" id="12"></box>
     <box class="cell" id="13"></box>
@@ -14,6 +14,16 @@
     <box class="cell" id="32"></box>
     <box class="cell" id="33"></box>
   </div>
+  <div v-if="this.$store.state.winner=='PX'" >
+    <h1>X has Won!</h1>
+  </div>
+  <div v-if="this.$store.state.winner=='PO'" >
+    <h1>O has Won!</h1>
+  </div>
+
+
+  <button v-on:click="reset">Reset Game</button>
+
 </div>
 </template>
 
@@ -22,6 +32,11 @@ import Box from "./Box"
 export default {
     components:{
         Box,
+    },
+    methods: {
+      reset(){
+        this.$store.commit("reset");
+      }
     }
 };
 </script>
