@@ -135,9 +135,10 @@ export default new Vuex.Store({
       state.additionO = 0;
       state.additionX = 0;
 
+      //opisite diagonal
       for (let index = 3; index >= 1; index--) {
         state.boardState.forEach(element => {
-          if(element.name == (index*11)){
+          if(element.name == 13 || element.name == 22 || element.name ==31){
           if (element.state == "X") {
             state.additionX += element.magic;
             console.log(state.additionX);
