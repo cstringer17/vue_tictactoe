@@ -66,9 +66,6 @@ export default new Vuex.Store({
   },
   mutations: {
     checkWin(state) {
-      console.log("checking state");
-      console.log("x" + state.additionO);
-      console.log("o" + state.additionX);
       //horizontal
       state.boardState.forEach(element => {
         state.counter++;
@@ -98,12 +95,22 @@ export default new Vuex.Store({
       //vertical
       for (let index = 0; index < 3; index++) {
         for (let subIndex = 0; subIndex < 3; subIndex++) {
-
+          if (state.boardState[(3 * subIndex + index)].state == "X") {
+            state.additionX += state.boardState[(3 * subIndex + index)].magic;
+          } else if (state.boardState[(3 * subIndex + index)].state == "O") {
+            state.additionO += state.boardState[(3 * subIndex + index)].magic;
+          }
+          if (state.additionX == 15) {
+            state.winner = "PX"
+            console.log("X Wins");
+          } else if (state.additionO == 15) {
+            state.winner = "PO"
+            console.log("O Wins");
+          }
+          
         }
-        // state.boardState.forEach(element => {
-        //   console.log(state.boardState[index].name);
-        //   element;
-        // });
+        state.additionO = 0;
+        state.additionX = 0;
       }
 
     },
